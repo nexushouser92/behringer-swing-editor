@@ -1,0 +1,106 @@
+89 short messages, 11 SysEx in 60 s
+
+Keys played: 0
+
+STUCK at the end (note on, never released): none
+Released only by an All Notes Off (CC 123), with no note off of their own: none
+Pressed again without being released: none
+Released less than 10 ms after pressing (contact bounce?): none
+
+Controllers:
+  ch  1 CC 127                    89 messages, last value 1
+Real-time: none
+Other channel messages (status byte): none
+MMC messages: 0 []
+Swing status SysEx: 11
+
+Timeline (seconds from start, channel aftertouch left out):
+   56.314  ch  1  CC 127 = 0
+   56.398  ch  1  CC 127 = 2
+   56.419  ch  1  CC 127 = 6
+   56.439  ch  1  CC 127 = 11
+   56.460  ch  1  CC 127 = 18
+   56.480  ch  1  CC 127 = 25
+   56.501  ch  1  CC 127 = 29
+   56.521  ch  1  CC 127 = 34
+   56.541  ch  1  CC 127 = 38
+   56.562  ch  1  CC 127 = 42
+   56.582  ch  1  CC 127 = 48
+   56.603  ch  1  CC 127 = 53
+   56.623  ch  1  CC 127 = 57
+   56.644  ch  1  CC 127 = 60
+   56.664  ch  1  CC 127 = 62
+   56.685  ch  1  CC 127 = 64
+   56.705  ch  1  CC 127 = 67
+   56.725  ch  1  CC 127 = 71
+   56.746  ch  1  CC 127 = 78
+   56.766  ch  1  CC 127 = 84
+   56.787  ch  1  CC 127 = 88
+   56.807  ch  1  CC 127 = 89
+   56.930  ch  1  CC 127 = 90
+   56.950  ch  1  CC 127 = 94
+   56.971  ch  1  CC 127 = 99
+   56.991  ch  1  CC 127 = 107
+   57.012  ch  1  CC 127 = 115
+   57.032  ch  1  CC 127 = 120
+   57.052  ch  1  CC 127 = 123
+   57.073  ch  1  CC 127 = 126
+   57.644  ch  1  CC 127 = 127
+   57.767  ch  1  CC 127 = 119
+   57.787  ch  1  CC 127 = 108
+   57.808  ch  1  CC 127 = 95
+   57.828  ch  1  CC 127 = 83
+   57.849  ch  1  CC 127 = 73
+   57.869  ch  1  CC 127 = 51
+   57.889  ch  1  CC 127 = 38
+   57.910  ch  1  CC 127 = 16
+   57.930  ch  1  CC 127 = 4
+   57.951  ch  1  CC 127 = 1
+   58.298  ch  1  CC 127 = 8
+   58.319  ch  1  CC 127 = 20
+   58.339  ch  1  CC 127 = 28
+   58.360  ch  1  CC 127 = 39
+   58.380  ch  1  CC 127 = 50
+   58.400  ch  1  CC 127 = 58
+   58.421  ch  1  CC 127 = 68
+   58.441  ch  1  CC 127 = 78
+   58.462  ch  1  CC 127 = 88
+   58.482  ch  1  CC 127 = 97
+   58.503  ch  1  CC 127 = 108
+   58.523  ch  1  CC 127 = 119
+   58.544  ch  1  CC 127 = 125
+   58.728  ch  1  CC 127 = 121
+   58.748  ch  1  CC 127 = 113
+   58.769  ch  1  CC 127 = 104
+   58.789  ch  1  CC 127 = 92
+   58.809  ch  1  CC 127 = 83
+   58.830  ch  1  CC 127 = 74
+   58.850  ch  1  CC 127 = 62
+   58.871  ch  1  CC 127 = 47
+   58.891  ch  1  CC 127 = 33
+   58.912  ch  1  CC 127 = 14
+   58.932  ch  1  CC 127 = 4
+   58.952  ch  1  CC 127 = 1
+   59.199  ch  1  CC 127 = 13
+   59.218  ch  1  CC 127 = 24
+   59.239  ch  1  CC 127 = 38
+   59.259  ch  1  CC 127 = 52
+   59.279  ch  1  CC 127 = 63
+   59.300  ch  1  CC 127 = 78
+   59.320  ch  1  CC 127 = 88
+   59.341  ch  1  CC 127 = 103
+   59.361  ch  1  CC 127 = 116
+   59.382  ch  1  CC 127 = 124
+   59.627  ch  1  CC 127 = 125
+   59.647  ch  1  CC 127 = 120
+   59.668  ch  1  CC 127 = 113
+   59.688  ch  1  CC 127 = 104
+   59.709  ch  1  CC 127 = 95
+   59.729  ch  1  CC 127 = 86
+   59.750  ch  1  CC 127 = 75
+   59.770  ch  1  CC 127 = 63
+   59.790  ch  1  CC 127 = 49
+   59.811  ch  1  CC 127 = 36
+   59.831  ch  1  CC 127 = 19
+   59.852  ch  1  CC 127 = 7
+   59.872  ch  1  CC 127 = 1

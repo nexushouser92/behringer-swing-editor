@@ -1,0 +1,115 @@
+86 short messages, 2 SysEx in 60 s
+
+Keys played: 16
+  range F1 .. B3
+  notes inside that range never received: G1, A1, B1, D2, E2, F2, G2, A2, B2, C3, D3, E3, F3, G3, A3
+  key    times  velocity min/avg/max
+  F1        1   114 / 114 / 114
+  F#1       2   112 / 119 / 127
+  G#1       2   112 / 119 / 127
+  Bb1       2    89 / 108 / 127
+  C2        2   104 / 111 / 119
+  C#2       2   119 / 123 / 127
+  Eb2       2    41 /  84 / 127
+  F#2       2    40 /  83 / 127
+  G#2       2    40 /  83 / 127
+  Bb2       2    84 / 105 / 127
+  C#3       2    82 / 104 / 127
+  Eb3       2   109 / 118 / 127
+  F#3       2    97 / 112 / 127
+  G#3       2   107 / 117 / 127
+  Bb3       2   114 / 120 / 127
+  B3        1   127 / 127 / 127
+
+STUCK at the end (note on, never released): none
+Released only by an All Notes Off (CC 123), with no note off of their own: none
+Pressed again without being released: none
+Released less than 10 ms after pressing (contact bounce?): none
+
+Controllers:
+  ch  1 CC  51 transport stop?     8 messages, last value 0
+  ch  1 CC  54 transport play?     2 messages, last value 0
+  ch  1 CC 123                     5 messages, last value 0
+Real-time: none
+Other channel messages (status byte): {'D0': 11}
+MMC messages: 2 ['f0 7f 7f 06 02 f7', 'f0 7f 7f 06 01 f7']
+Swing status SysEx: 0
+
+Timeline (seconds from start, channel aftertouch left out):
+    8.979  ch  1  note on  F1 vel 114
+    9.328  ch  1  note off F1
+   12.374  ch  1  note on  F#1 vel 112
+   12.563  ch  1  note off F#1
+   12.944  ch  1  note on  F#1 vel 127
+   13.032  ch  1  note off F#1
+   13.463  ch  1  note on  G#1 vel 112
+   13.603  ch  1  note off G#1
+   13.879  ch  1  note on  G#1 vel 127
+   13.955  ch  1  note off G#1
+   14.351  ch  1  note on  Bb1 vel 89
+   14.459  ch  1  note off Bb1
+   14.722  ch  1  note on  Bb1 vel 127
+   14.794  ch  1  note off Bb1
+   15.121  ch  1  note on  C#2 vel 119
+   15.194  ch  1  note off C#2
+   15.579  ch  1  note on  C#2 vel 127
+   15.647  ch  1  note off C#2
+   16.141  ch  1  note on  Eb2 vel 41
+   16.278  ch  1  note off Eb2
+   16.582  ch  1  note on  Eb2 vel 127
+   16.652  ch  1  note off Eb2
+   17.081  ch  1  note on  F#2 vel 40
+   17.219  ch  1  note off F#2
+   17.508  ch  1  note on  F#2 vel 127
+   17.587  ch  1  note off F#2
+   17.960  ch  1  note on  G#2 vel 40
+   18.132  ch  1  note off G#2
+   18.385  ch  1  note on  G#2 vel 127
+   18.464  ch  1  note off G#2
+   18.780  ch  1  note on  Bb2 vel 84
+   18.929  ch  1  note off Bb2
+   19.183  ch  1  note on  Bb2 vel 127
+   19.275  ch  1  note off Bb2
+   19.703  ch  1  note on  C#3 vel 82
+   19.832  ch  1  note off C#3
+   20.055  ch  1  note on  C#3 vel 127
+   20.128  ch  1  note off C#3
+   20.478  ch  1  note on  Eb3 vel 109
+   20.588  ch  1  note off Eb3
+   20.902  ch  1  note on  Eb3 vel 127
+   21.006  ch  1  note off Eb3
+   21.776  ch  1  note on  F#3 vel 97
+   21.955  ch  1  note off F#3
+   22.162  ch  1  note on  F#3 vel 127
+   22.237  ch  1  note off F#3
+   22.589  ch  1  note on  G#3 vel 107
+   22.729  ch  1  note off G#3
+   22.977  ch  1  note on  G#3 vel 127
+   23.049  ch  1  note off G#3
+   23.717  ch  1  note on  Bb3 vel 114
+   23.868  ch  1  note off Bb3
+   24.193  ch  1  note on  Bb3 vel 127
+   24.201  ch  1  note on  B3 vel 127
+   24.302  ch  1  note off Bb3
+   24.304  ch  1  note off B3
+   29.188  ch  1  note on  C2 vel 119
+   34.081  ch  1  note off C2
+   35.441  ch  1  CC 51 = 127
+   35.441  ch  1  CC 123 = 0
+   35.501  ch  1  CC 51 = 0
+   43.600  ch  1  CC 51 = 127
+   43.601  ch  1  CC 123 = 0
+   43.720  ch  1  CC 51 = 0
+   48.816  ch  1  note on  C2 vel 104
+   52.920  ch  1  note off C2
+   53.500  ch  1  CC 51 = 127
+   53.500  ch  1  CC 123 = 0
+   53.560  ch  1  CC 51 = 0
+   54.760  ch  1  CC 123 = 0
+   54.760  ch  1  CC 54 = 127
+   54.760  SysEx  f0 7f 7f 06 02 f7
+   54.880  ch  1  CC 54 = 0
+   55.420  ch  1  CC 51 = 127
+   55.420  ch  1  CC 123 = 0
+   55.420  SysEx  f0 7f 7f 06 01 f7
+   55.480  ch  1  CC 51 = 0

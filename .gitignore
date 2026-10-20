@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.claude/
+firmware/
+research/ct_patch/
+.pytest_cache/

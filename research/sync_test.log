@@ -1,0 +1,41 @@
+Listening for 40 s
+3 short messages, 17 SysEx in 40 s
+
+Keys played: 0
+
+STUCK at the end (note on, never released): none
+Released only by an All Notes Off (CC 123), with no note off of their own: none
+Pressed again without being released: none
+Released less than 10 ms after pressing (contact bounce?): none
+
+Controllers:
+  ch 16 CC  50 transport rec?      2 messages, last value 127
+  ch 16 CC  54 transport play?     1 messages, last value 0
+Real-time: none
+Other channel messages (status byte): none
+MMC messages: 2 ['f0 7f 7f 06 07 f7', 'f0 7f 7f 06 06 f7']
+Swing status SysEx: 15
+
+Timeline (seconds from start, channel aftertouch left out):
+   24.610  SysEx  Swing status 06 19
+   24.930  SysEx  Swing status 06 1d
+   26.830  SysEx  Swing status 06 1a
+   26.850  ch 16  CC 50 = 127
+   26.850  SysEx  f0 7f 7f 06 07 f7
+   26.850  SysEx  Swing status 06 12
+   28.390  SysEx  Swing status 06 19
+   29.250  SysEx  Swing status 06 1e
+   31.150  SysEx  Swing status 06 1a
+   32.289  SysEx  Swing status 06 19
+   32.789  SysEx  Swing status 06 1f
+   34.929  SysEx  Swing status 06 1a
+   34.949  ch 16  CC 54 = 0
+   34.949  SysEx  Swing status 06 10
+   35.889  SysEx  Swing status 06 19
+   36.569  SysEx  Swing status 06 1d
+   38.409  SysEx  Swing status 06 1a
+   38.429  ch 16  CC 50 = 127
+   38.429  SysEx  f0 7f 7f 06 06 f7
+   38.430  SysEx  Swing status 06 12
+
+[exited with code 0]

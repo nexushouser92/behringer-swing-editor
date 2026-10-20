@@ -1,0 +1,246 @@
+Listening for 60 s; simulated DAW clock at 120 BPM from 30 s
+1591 short messages, 71 SysEx in 60 s
+
+Keys played: 4
+  range F2 .. C3
+  notes inside that range never received: F#2, G#2, Bb2, B2
+  key    times  velocity min/avg/max
+  F2       21    38 /  89 / 106
+  G2        3    11 /  11 /  11   <- always very soft
+  A2       18    10 / 103 / 109
+  C3       17    34 / 101 / 106
+
+STUCK at the end (note on, never released): none
+Released only by an All Notes Off (CC 123), with no note off of their own: none
+Pressed again without being released: none
+Released less than 10 ms after pressing (contact bounce?): none
+
+Controllers:
+  ch  1 CC 123                     8 messages, last value 0
+  ch 16 CC  50 transport rec?      2 messages, last value 127
+  ch 16 CC  51 transport stop?    10 messages, last value 0
+  ch 16 CC  54 transport play?     6 messages, last value 0
+Real-time: {'start': 1, 'clock': 1446}
+Other channel messages (status byte): none
+MMC messages: 8 ['f0 7f 7f 06 02 f7', 'f0 7f 7f 06 01 f7', 'f0 7f 7f 06 02 f7', 'f0 7f 7f 06 01 f7']
+Swing status SysEx: 63
+
+Timeline (seconds from start, channel aftertouch left out):
+   12.477  SysEx  Swing status 01 05
+   12.877  SysEx  Swing status 01 05
+   17.136  ch 16  CC 51 = 127
+   17.136  ch  1  CC 123 = 0
+   17.137  SysEx  Swing status 06 13
+   17.256  ch 16  CC 51 = 0
+   17.256  SysEx  Swing status 06 14
+   17.496  ch 16  CC 54 = 127
+   17.496  SysEx  f0 7f 7f 06 02 f7
+   17.497  SysEx  Swing status 06 0f
+   17.616  ch 16  CC 54 = 0
+   17.616  SysEx  Swing status 06 10
+   20.136  ch 16  CC 51 = 127
+   20.136  SysEx  f0 7f 7f 06 01 f7
+   20.136  ch  1  CC 123 = 0
+   20.136  SysEx  Swing status 06 13
+   20.316  ch 16  CC 51 = 0
+   20.316  SysEx  Swing status 06 14
+   21.515  ch 16  CC 54 = 127
+   21.516  SysEx  f0 7f 7f 06 02 f7
+   21.516  SysEx  Swing status 06 0f
+   21.575  ch 16  CC 54 = 0
+   21.576  SysEx  Swing status 06 10
+   22.096  SysEx  Swing status 06 19
+   22.276  SysEx  Swing status 06 1a
+   22.696  SysEx  Swing status 06 1b
+   22.816  ch 16  CC 51 = 127
+   22.816  SysEx  f0 7f 7f 06 01 f7
+   22.816  ch  1  CC 123 = 0
+   22.816  ch  1  CC 123 = 0
+   22.817  SysEx  Swing status 03 00
+   22.829  SysEx  Swing status 06 1c
+   23.116  SysEx  Swing status 06 19
+   23.236  ch 16  CC 51 = 127
+   23.236  ch  1  CC 123 = 0
+   23.236  ch  1  CC 123 = 0
+   23.236  SysEx  Swing status 03 01
+   23.249  SysEx  Swing status 06 1a
+   24.155  ch 16  CC 54 = 127
+   24.156  SysEx  f0 7f 7f 06 02 f7
+   24.156  SysEx  Swing status 06 0f
+   24.215  ch 16  CC 54 = 0
+   24.216  SysEx  Swing status 06 10
+   28.280  ch  1  note on  A2 vel 10
+   28.351  ch  1  note off A2
+   28.405  ch  1  note on  C3 vel 34
+   28.476  ch  1  note off C3
+   28.530  ch  1  note on  G2 vel 11
+   28.601  ch  1  note off G2
+   28.655  ch  1  note on  F2 vel 38
+   28.726  ch  1  note off F2
+   28.780  ch  1  note on  F2 vel 38
+   28.851  ch  1  note off F2
+   28.905  ch  1  note on  G2 vel 11
+   28.975  SysEx  Swing status 06 09
+   28.976  ch  1  note off G2
+   29.030  ch  1  note on  F2 vel 38
+   29.095  SysEx  Swing status 06 0a
+   29.101  ch  1  note off F2
+   29.155  ch  1  note on  F2 vel 38
+   29.226  ch  1  note off F2
+   29.280  ch  1  note on  G2 vel 11
+   29.351  ch  1  note off G2
+   29.405  ch  1  note on  F2 vel 38
+   29.476  ch  1  note off F2
+   30.003  >>> sent to the Swing: MIDI Start + clock
+   30.415  SysEx  Swing status 06 09
+   30.504  SysEx  Swing status 04 01 00 f0 42 05 fc
+   30.880  ch  1  note on  A2 vel 109
+   30.951  ch  1  note off A2
+   31.004  SysEx  Swing status 04 4a 0c f0 42 05 fc
+   31.005  ch  1  note on  F2 vel 106
+   31.076  ch  1  note off F2
+   31.130  ch  1  note on  C3 vel 106
+   31.201  ch  1  note off C3
+   31.254  ch  1  note on  A2 vel 109
+   31.326  ch  1  note off A2
+   31.379  ch  1  note on  F2 vel 106
+   31.435  SysEx  Swing status 06 0a
+   31.451  ch  1  note off F2
+   31.504  SysEx  Swing status 04 01 00 f0 42 05 fc
+   31.504  ch  1  note on  C3 vel 106
+   31.576  ch  1  note off C3
+   31.629  ch  1  note on  A2 vel 109
+   31.701  ch  1  note off A2
+   31.754  ch  1  note on  F2 vel 106
+   31.826  ch  1  note off F2
+   31.879  ch  1  note on  C3 vel 106
+   31.951  ch  1  note off C3
+   32.004  SysEx  Swing status 04 b7 f3 ef 42 05 fc
+   32.004  ch  1  note on  A2 vel 109
+   32.076  ch  1  note off A2
+   32.129  ch  1  note on  F2 vel 106
+   32.201  ch  1  note off F2
+   32.254  ch  1  note on  C3 vel 106
+   32.326  ch  1  note off C3
+   32.379  ch  1  note on  A2 vel 109
+   32.451  ch  1  note off A2
+   32.504  SysEx  Swing status 04 b7 f3 ef 42 05 fc
+   32.504  ch  1  note on  F2 vel 106
+   32.576  ch  1  note off F2
+   32.629  ch  1  note on  C3 vel 106
+   32.701  ch  1  note off C3
+   32.754  ch  1  note on  A2 vel 109
+   32.826  ch  1  note off A2
+   32.879  ch  1  note on  F2 vel 106
+   32.951  ch  1  note off F2
+   33.004  SysEx  Swing status 04 01 00 f0 42 05 fc
+   33.004  ch  1  note on  C3 vel 106
+   33.075  ch  1  note off C3
+   33.129  ch  1  note on  A2 vel 109
+   33.200  ch  1  note off A2
+   33.254  ch  1  note on  F2 vel 106
+   33.325  ch  1  note off F2
+   33.379  ch  1  note on  C3 vel 106
+   33.450  ch  1  note off C3
+   33.504  SysEx  Swing status 04 b7 f3 ef 42 05 fc
+   33.504  ch  1  note on  A2 vel 109
+   33.575  ch  1  note off A2
+   33.629  ch  1  note on  F2 vel 106
+   33.700  ch  1  note off F2
+   33.754  ch  1  note on  C3 vel 106
+   33.825  ch  1  note off C3
+   33.879  ch  1  note on  A2 vel 109
+   33.950  ch  1  note off A2
+   34.004  SysEx  Swing status 04 01 00 f0 42 05 fc
+   34.004  ch  1  note on  F2 vel 106
+   34.075  ch  1  note off F2
+   34.129  ch  1  note on  C3 vel 106
+   34.200  ch  1  note off C3
+   34.254  ch  1  note on  A2 vel 109
+   34.325  ch  1  note off A2
+   34.379  ch  1  note on  F2 vel 106
+   34.450  ch  1  note off F2
+   34.504  ch  1  note on  C3 vel 106
+   34.504  SysEx  Swing status 04 01 00 f0 42 05 fc
+   34.575  ch  1  note off C3
+   34.629  ch  1  note on  A2 vel 109
+   34.700  ch  1  note off A2
+   34.754  ch  1  note on  F2 vel 106
+   34.825  ch  1  note off F2
+   34.879  ch  1  note on  C3 vel 106
+   34.950  ch  1  note off C3
+   35.004  SysEx  Swing status 04 01 00 f0 42 05 fc
+   35.004  ch  1  note on  A2 vel 109
+   35.075  ch  1  note off A2
+   35.129  ch  1  note on  F2 vel 106
+   35.200  ch  1  note off F2
+   35.254  ch  1  note on  C3 vel 106
+   35.325  ch  1  note off C3
+   35.379  ch  1  note on  A2 vel 109
+   35.450  ch  1  note off A2
+   35.504  SysEx  Swing status 04 b7 f3 ef 42 05 fc
+   35.504  ch  1  note on  F2 vel 106
+   35.575  ch  1  note off F2
+   35.629  ch  1  note on  C3 vel 106
+   35.700  ch  1  note off C3
+   35.754  ch  1  note on  A2 vel 109
+   35.825  ch  1  note off A2
+   35.879  ch  1  note on  F2 vel 106
+   35.950  ch  1  note off F2
+   36.004  SysEx  Swing status 04 b7 f3 ef 42 05 fc
+   36.004  ch  1  note on  C3 vel 106
+   36.075  ch  1  note off C3
+   36.129  ch  1  note on  A2 vel 109
+   36.200  ch  1  note off A2
+   36.254  ch  1  note on  F2 vel 106
+   36.325  ch  1  note off F2
+   36.379  ch  1  note on  C3 vel 106
+   36.450  ch  1  note off C3
+   36.504  SysEx  Swing status 04 01 00 f0 42 05 fc
+   36.504  ch  1  note on  A2 vel 109
+   36.575  ch  1  note off A2
+   36.629  ch  1  note on  F2 vel 106
+   36.700  ch  1  note off F2
+   36.753  ch  1  note on  C3 vel 106
+   36.825  ch  1  note off C3
+   36.878  ch  1  note on  A2 vel 109
+   36.950  ch  1  note off A2
+   37.004  SysEx  Swing status 04 4a 0c f0 42 05 fc
+   37.504  SysEx  Swing status 04 b7 f3 ef 42 05 fc
+   38.004  SysEx  Swing status 04 b7 f3 ef 42 05 fc
+   38.504  SysEx  Swing status 04 01 00 f0 42 05 fc
+   38.875  SysEx  Swing status 06 09
+   39.004  SysEx  Swing status 04 b7 f3 ef 42 05 fc
+   39.055  SysEx  Swing status 06 0a
+   39.504  SysEx  Swing status 04 4a 0c f0 42 05 fc
+   40.004  SysEx  Swing status 04 01 00 f0 42 05 fc
+   40.504  SysEx  Swing status 04 b7 f3 ef 42 05 fc
+   41.004  SysEx  Swing status 04 b7 f3 ef 42 05 fc
+   41.014  ch 16  CC 51 = 127
+   41.015  ch  1  CC 123 = 0
+   41.015  SysEx  f0 7f 7f 06 01 f7
+   41.015  SysEx  Swing status 06 13
+   41.074  ch 16  CC 51 = 0
+   41.075  SysEx  Swing status 06 14
+   45.179  SysEx  Swing status 01 05
+   45.779  SysEx  Swing status 01 05
+   46.279  SysEx  Swing status 01 05
+   46.714  ch 16  CC 51 = 127
+   46.714  ch  1  CC 123 = 0
+   46.714  SysEx  Swing status 06 13
+   46.879  SysEx  Swing status 01 05
+   47.134  ch 16  CC 51 = 0
+   47.134  SysEx  Swing status 06 14
+   49.774  SysEx  Swing status 06 11
+   49.833  ch 16  CC 50 = 127
+   49.834  SysEx  f0 7f 7f 06 06 f7
+   49.834  SysEx  Swing status 06 12
+   56.913  SysEx  Swing status 06 11
+   57.579  SysEx  Swing status 01 05
+   58.879  SysEx  Swing status 01 05
+   59.193  ch 16  CC 50 = 127
+   59.193  SysEx  f0 7f 7f 06 07 f7
+   59.194  SysEx  Swing status 06 12
+   59.479  SysEx  Swing status 01 05
+
+[exited with code 0]

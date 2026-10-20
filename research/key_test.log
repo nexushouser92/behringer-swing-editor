@@ -1,0 +1,60 @@
+401 short messages, 93 SysEx in 90 s
+
+Keys played: 40
+  range F0 .. G4
+  notes inside that range never received: F#0, G#0, Bb0, C#1, Eb1, Bb1, C#2, Bb3, C#4, Eb4, F#4
+  key    times  velocity min/avg/max
+  F0        1    82 /  82 /  82
+  G0        1   112 / 112 / 112
+  A0        2    94 / 105 / 117
+  B0        1   114 / 114 / 114
+  C1        1    99 /  99 /  99
+  D1        2   102 / 103 / 104
+  E1        1   117 / 117 / 117
+  F1       11    28 /  85 / 114
+  F#1       1    62 /  62 /  62
+  G1        8    49 /  91 / 117
+  G#1       1    52 /  52 /  52
+  A1        7    62 / 101 / 117
+  B1        5    94 / 104 / 114
+  C2        8    92 / 104 / 112
+  D2        6    59 / 101 / 117
+  Eb2       1    40 /  40 /  40
+  E2        7    74 / 103 / 117
+  F2        9    52 /  98 / 117
+  F#2       1    34 /  34 /  34   <- always very soft
+  G2        9    41 /  97 / 114
+  G#2       1    35 /  35 /  35   <- always very soft
+  A2        5   102 / 108 / 117
+  Bb2       1    77 /  77 /  77
+  B2        2   112 / 114 / 117
+  C3        4   104 / 111 / 117
+  C#3       1    74 /  74 /  74
+  D3        5    35 /  93 / 114
+  Eb3       2    18 /  37 /  57
+  E3        7    82 / 102 / 114
+  F3        5    97 / 108 / 117
+  F#3       1    31 /  31 /  31   <- always very soft
+  G3        4    99 / 105 / 112
+  G#3       1    30 /  30 /  30   <- always very soft
+  A3        3   104 / 110 / 114
+  B3        3   104 / 109 / 114
+  C4        6    87 / 102 / 112
+  D4        1   114 / 114 / 114
+  E4        5    38 /  88 / 112
+  F4        2   104 / 106 / 109
+  G4        4    72 /  93 / 104
+
+STUCK at the end (note on, never released): G2 (ch 1), D2 (ch 1)
+Pressed again without being released: none
+Released less than 10 ms after pressing (contact bounce?): none
+
+Controllers:
+  ch  1 CC  51 transport stop?    10 messages, last value 0
+  ch  1 CC  54 transport play?    10 messages, last value 0
+  ch  1 CC 123                    10 messages, last value 0
+  ch  1 CC 127                     6 messages, last value 37
+Real-time: none
+Other channel messages (status byte): {'D0': 73}
+MMC messages: 9 ['f0 7f 7f 06 02 f7', 'f0 7f 7f 06 01 f7', 'f0 7f 7f 06 02 f7', 'f0 7f 7f 06 01 f7']
+Swing status SysEx: 84

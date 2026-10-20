@@ -1,0 +1,15 @@
+-> f0 00 20 32 7f 42 57 f7   (read)
+<- f0 00 20 32 7f 42 57 7f f7
+   original value: 127
+-> f0 00 20 32 7f 42 57 40 f7   (write 64)
+<- f0 00 20 32 7f 42 57 f7
+   echo after write: none
+-> f0 00 20 32 7f 42 57 f7   (read)
+<- f0 00 20 32 7f 42 57 40 f7
+   read back: 64  (OK)
+-> f0 00 20 32 7f 42 57 7f f7   (write 127)
+<- f0 00 20 32 7f 42 57 f7
+   echo after write: none
+-> f0 00 20 32 7f 42 57 f7   (read)
+<- f0 00 20 32 7f 42 57 7f f7
+   restored: 127  (OK)

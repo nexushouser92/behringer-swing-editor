@@ -1,0 +1,151 @@
+== Product info ==
+-> product info                 f0 00 20 32 7f 42 00 f7
+<-                              f0 00 20 32 7f 42 00 01 00 00 01 01 34 f7
+   groups: 1.0.0  and  1.1.52
+
+== Settings ==
+-> 07 MIDI In channel           f0 00 20 32 7f 42 07 f7
+<-                              f0 00 20 32 7f 42 07 00 f7
+-> 08 MIDI Thru                 f0 00 20 32 7f 42 08 f7
+<-                              f0 00 20 32 7f 42 08 00 f7
+-> 09 Sustain pedal mode        f0 00 20 32 7f 42 09 f7
+<-                              f0 00 20 32 7f 42 09 00 f7
+-> 0A Sustain pedal user        f0 00 20 32 7f 42 0a f7
+<-                              f0 00 20 32 7f 42 0a 41 f7
+-> 0B Sustain CC low            f0 00 20 32 7f 42 0b f7
+<-                              f0 00 20 32 7f 42 0b 00 f7
+-> 0C Sustain CC high           f0 00 20 32 7f 42 0c f7
+<-                              f0 00 20 32 7f 42 0c 7f f7
+-> 0D Sustain CC number         f0 00 20 32 7f 42 0d f7
+<-                              f0 00 20 32 7f 42 0d 40 f7
+-> 0E Hold switch mode          f0 00 20 32 7f 42 0e f7
+<-                              f0 00 20 32 7f 42 0e 01 f7
+-> 0F Hold switch function      f0 00 20 32 7f 42 0f f7
+<-                              f0 00 20 32 7f 42 0f 01 f7
+-> 10 Sustain pedal function    f0 00 20 32 7f 42 10 f7
+<-                              f0 00 20 32 7f 42 10 02 f7
+-> 13 Mod MIDI channel          f0 00 20 32 7f 42 13 f7
+<-                              f0 00 20 32 7f 42 13 00 f7
+-> 14 Mod CC number             f0 00 20 32 7f 42 14 f7
+<-                              f0 00 20 32 7f 42 14 7f f7
+-> 15 Pitch bend                f0 00 20 32 7f 42 15 f7
+<-                              f0 00 20 32 7f 42 70 00 01 05 f7
+<-                              f0 00 20 32 7f 42 15 00 f7
+-> 16 Output channel            f0 00 20 32 7f 42 16 f7
+<-                              f0 00 20 32 7f 42 16 00 f7
+-> 19 Velocity curve            f0 00 20 32 7f 42 19 f7
+<-                              f0 00 20 32 7f 42 19 01 f7
+-> 1A Aftertouch curve          f0 00 20 32 7f 42 1a f7
+<-                              f0 00 20 32 7f 42 1a 00 f7
+-> 20 Clock mode                f0 00 20 32 7f 42 20 f7
+<-                              f0 00 20 32 7f 42 20 02 f7
+-> 21 Transposition input channel f0 00 20 32 7f 42 21 f7
+<-                              f0 00 20 32 7f 42 21 41 f7
+-> 22 Tap tempo count           f0 00 20 32 7f 42 22 f7
+<-                              f0 00 20 32 7f 42 22 02 f7
+-> 23 Clock start               f0 00 20 32 7f 42 23 f7
+<-                              f0 00 20 32 7f 42 23 00 f7
+-> 24 Next sequence             f0 00 20 32 7f 42 24 f7
+<-                              f0 00 20 32 7f 42 24 00 f7
+-> 25 Arm to start              f0 00 20 32 7f 42 25 f7
+<-                              f0 00 20 32 7f 42 25 00 f7
+-> 26 Transposition latch       f0 00 20 32 7f 42 26 f7
+<-                              f0 00 20 32 7f 42 26 00 f7
+-> 27 Transposition input port  f0 00 20 32 7f 42 27 f7
+<-                              f0 00 20 32 7f 42 27 00 f7
+-> 28 Tempo knob (Rate)         f0 00 20 32 7f 42 28 f7
+<-                              f0 00 20 32 7f 42 28 00 f7
+-> 29 Velocity                  f0 00 20 32 7f 42 29 f7
+<-                              f0 00 20 32 7f 42 29 00 f7
+-> 2A Fixed velocity            f0 00 20 32 7f 42 2a f7
+<-                              f0 00 20 32 7f 42 2a 7f f7
+-> 2B Transposition center pitch f0 00 20 32 7f 42 2b f7
+<-                              f0 00 20 32 7f 42 2b 3c f7
+-> 2C Sequencer random          f0 00 20 32 7f 42 2c f7
+<-                              f0 00 20 32 7f 42 2c 01 f7
+-> 2D Arpeggiator random        f0 00 20 32 7f 42 2d f7
+<-                              f0 00 20 32 7f 42 2d 00 f7
+-> 46 Gate output               f0 00 20 32 7f 42 46 f7
+<-                              f0 00 20 32 7f 42 46 00 f7
+-> 47 Pitch output              f0 00 20 32 7f 42 47 f7
+<-                              f0 00 20 32 7f 42 47 01 f7
+-> 4A 1 V MIDI note             f0 00 20 32 7f 42 4a f7
+<-                              f0 00 20 32 7f 42 4a 00 f7
+-> 4C 0 V MIDI note             f0 00 20 32 7f 42 4c f7
+<-                              f0 00 20 32 7f 42 4c 00 f7
+-> 4D Note priority             f0 00 20 32 7f 42 4d f7
+<-                              f0 00 20 32 7f 42 4d 01 f7
+-> 4E Mod CV source             f0 00 20 32 7f 42 4e f7
+<-                              f0 00 20 32 7f 42 4e 00 f7
+-> 4F Mod CV max voltage        f0 00 20 32 7f 42 4f f7
+<-                              f0 00 20 32 7f 42 4f 0c f7
+-> 50 Pitch CV range            f0 00 20 32 7f 42 50 f7
+<-                              f0 00 20 32 7f 42 50 18 f7
+-> 57 LED brightness            f0 00 20 32 7f 42 57 f7
+<-                              f0 00 20 32 7f 42 57 7f f7
+-> 60 Transport mode            f0 00 20 32 7f 42 60 f7
+<-                              f0 00 20 32 7f 42 60 03 f7
+-> 61 Stop MIDI channel         f0 00 20 32 7f 42 61 f7
+<-                              f0 00 20 32 7f 42 61 00 f7
+-> 62 Rec MIDI channel          f0 00 20 32 7f 42 62 f7
+<-                              f0 00 20 32 7f 42 62 00 f7
+-> 63 Play MIDI channel         f0 00 20 32 7f 42 63 f7
+<-                              f0 00 20 32 7f 42 63 00 f7
+-> 64 Stop CC                   f0 00 20 32 7f 42 64 f7
+<-                              f0 00 20 32 7f 42 64 33 f7
+-> 65 Rec CC                    f0 00 20 32 7f 42 65 f7
+<-                              f0 00 20 32 7f 42 65 32 f7
+-> 66 Play CC                   f0 00 20 32 7f 42 66 f7
+<-                              f0 00 20 32 7f 42 66 36 f7
+-> 67 Play/Pause                f0 00 20 32 7f 42 67 f7
+<-                              f0 00 20 32 7f 42 67 00 f7
+
+== Summary ==
+07  MIDI In channel              0
+08  MIDI Thru                    0
+09  Sustain pedal mode           0
+0A  Sustain pedal user           65
+0B  Sustain CC low               0
+0C  Sustain CC high              127
+0D  Sustain CC number            64
+0E  Hold switch mode             1
+0F  Hold switch function         1
+10  Sustain pedal function       2
+13  Mod MIDI channel             0
+14  Mod CC number                127
+15  Pitch bend                   0
+16  Output channel               0
+19  Velocity curve               1
+1A  Aftertouch curve             0
+20  Clock mode                   2
+21  Transposition input channel  65
+22  Tap tempo count              2
+23  Clock start                  0
+24  Next sequence                0
+25  Arm to start                 0
+26  Transposition latch          0
+27  Transposition input port     0
+28  Tempo knob (Rate)            0
+29  Velocity                     0
+2A  Fixed velocity               127
+2B  Transposition center pitch   60
+2C  Sequencer random             1
+2D  Arpeggiator random           0
+46  Gate output                  0
+47  Pitch output                 1
+4A  1 V MIDI note                0
+4C  0 V MIDI note                0
+4D  Note priority                1
+4E  Mod CV source                0
+4F  Mod CV max voltage           12
+50  Pitch CV range               24
+57  LED brightness               127
+60  Transport mode               3
+61  Stop MIDI channel            0
+62  Rec MIDI channel             0
+63  Play MIDI channel            0
+64  Stop CC                      51
+65  Rec CC                       50
+66  Play CC                      54
+67  Play/Pause                   0
+47 of 47 parameters answered
