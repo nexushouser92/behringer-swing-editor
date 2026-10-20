@@ -8,6 +8,8 @@ each change right away, with read-back verification.
 > This is an unofficial project, not affiliated with or endorsed by Behringer, Music Tribe or Midas.
 > It was built for interoperability, without copying any code or assets from the official editor.
 
+![Swing Editor window](docs/screenshot.png)
+
 ---
 
 ## Features
