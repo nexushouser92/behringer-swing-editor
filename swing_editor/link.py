@@ -17,7 +17,6 @@ import threading
 import time
 
 from . import device, midi_win
-from .bridge_io import TappedPort
 
 POLL_INTERVAL = 1.0
 WRITE_DELAY = 0.3
@@ -31,7 +30,6 @@ class SwingLink:
         self.events = queue.Queue()
         self.port = None
         self.on_swing = None        # settings the Swing has (last read or written)
-        self.bridge = None          # bridge_io.BridgeRunner while the DAW bridge is on
         self._lock = threading.Lock()
         self._pending = None        # settings waiting to be written
         self._due = 0.0
@@ -61,17 +59,6 @@ class SwingLink:
 
     def request_read(self):
         self._want_read = True
-
-    def set_bridge(self, runner):
-        """Turn the DAW bridge on (a running BridgeRunner) or off (None)."""
-        old, self.bridge = self.bridge, runner
-        port = self.port
-        if port is not None:
-            port.set_bridge(runner)
-            if runner is not None:
-                runner.attach(port)
-        if old is not None and old is not runner:
-            old.swing = None
 
     def start(self):
         self._thread = threading.Thread(target=self._run, daemon=True)
@@ -105,8 +92,6 @@ class SwingLink:
             if not self._present():
                 self._drop(None)
                 return
-        if self.bridge is not None:
-            self.port.pump()   # Swing status and MMC for the DAW bridge
         if self._want_read:
             self._want_read = False
             if not self._read():
@@ -127,13 +112,10 @@ class SwingLink:
         if not self._present():
             return
         try:
-            port = TappedPort(self.opener())
+            port = self.opener()
         except (midi_win.MidiError, OSError) as e:
             self.events.put(("searching", e))   # the Swing is there but its port could not be opened
             return
-        if self.bridge is not None:
-            port.set_bridge(self.bridge)
-            self.bridge.attach(port)
         self.port = port
         self.events.put(("linked", None))
         try:
@@ -188,8 +170,6 @@ class SwingLink:
 
     def _close(self):
         port, self.port = self.port, None
-        if port is not None and self.bridge is not None:
-            self.bridge.detach()   # silence in the DAW whatever the Swing left on
         if port is not None:
             try:
                 port.close()

@@ -42,9 +42,14 @@ the risk, and what to do.
   sets the source, and trying unknown commands is unsafe (`77` puts the Swing in bootloader mode).
 - **Giving the tempo knob a CC**: it sends nothing over USB.
 
-## The DAW bridge (`swing_editor/bridge.py`, `bridge_io.py`)
+## The DAW bridge (removed)
 
-With the bridge on, the editor keeps the Swing's port and the DAW talks to two loopMIDI ports
+> **Historical.** The DAW bridge was removed from the editor. DAW mode now sets **Transport
+> messages = Off**, which makes crossing 11 (the Arp + Rec/Stop/Play transport leak) harmless without
+> any real-time filtering, so the bridge's main job disappeared. The clock echo (crossing 1) is now a
+> DAW-side setting (Sync only on the Swing's output). The notes below describe what the bridge did.
+
+With the bridge on, the editor kept the Swing's port and the DAW talked to two loopMIDI ports
 instead: it listens to **Swing to DAW** and sends its clock to **DAW to Swing**. This also removes
 crossing 10 (exclusive port): the editor and the DAW can be open together.
 

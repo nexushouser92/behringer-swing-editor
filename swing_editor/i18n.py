@@ -21,27 +21,18 @@ TEXTS = {
         "daw_on": "Modo DAW",
         "daw_off": "Salir del modo DAW",
         "daw_on_confirm": (
-            "El modo DAW prepara el Swing para usarlo con un DAW por USB:\n\n"
-            "• Play, Stop y Rec por el canal 16 (no se mezclan con las notas)\n"
+            "El modo DAW deja el Swing como un controlador MIDI limpio, solo con lo esencial:\n\n"
+            "• Teclas, OCT−/OCT+, Hold, pitch bend y modulación, todo en el canal 1\n"
+            "• Transporte apagado: Play, Stop y Rec no envían nada (los combos Arp + REC/STOP/PLAY quedan inertes)\n"
+            "• Transposición desactivada: nada transpone el secuenciador\n"
             "• Tira Mod en el CC 1 estándar\n"
             "• MIDI Thru apagado\n"
-            "• Transposición solo desde USB\n"
-            "• Velocidad lineal\n"
-            "• Transporte solo por MIDI CC (sin MMC: un botón nunca actúa dos veces)\n"
-            "• Hold mantiene las teclas (cada nota se suelta con su propio note off)\n\n"
+            "• Velocidad lineal\n\n"
             "Los valores actuales se guardan para poder volver a ellos. ¿Activarlo?"),
         "daw_off_confirm": "¿Volver a los ajustes que tenía el Swing antes del modo DAW?",
-        "daw_on_done": "Modo DAW activado. En el DAW, activa Sync en la salida MIDI del Swing para que siga su tempo.",
+        "daw_on_done": "Modo DAW activado. En el DAW, usa Sync solo en la salida MIDI del Swing (no en su entrada) para que siga el tempo sin bucles.",
         "daw_off_done": "Ajustes anteriores al modo DAW restaurados.",
         "daw_no_backup": "El Swing ya tiene los ajustes del modo DAW y no hay ajustes anteriores guardados para volver.",
-        "bridge": "Puente DAW",
-        "bridge_off_hint": "Apagado. Necesita loopMIDI con los puertos «Swing to DAW» y «DAW to Swing».",
-        "bridge_on_hint": "Activo: Swing ⇄ loopMIDI ⇄ DAW, con filtros contra bucles y notas pegadas.",
-        "bridge_on_done": "Puente DAW activo. En el DAW: entrada «Swing to DAW» (Track) y salida «DAW to Swing» (Sync). Desactiva el puerto «Behringer Swing».",
-        "bridge_off_done": "Puente DAW apagado.",
-        "bridge_missing": "No se pudo abrir el puente: {err}. Abre loopMIDI y crea los puertos «Swing to DAW» y «DAW to Swing».",
-        "panic": "Pánico",
-        "panic_done": "Pánico enviado al DAW: notas, sustain y All Notes Off en los 16 canales.",
         "firmware": "Firmware {v}",
         "no_swing": "Conecta tu Behringer Swing por USB.\nSus ajustes aparecerán aquí automáticamente.",
         "reading": "Leyendo los ajustes del Swing…",
@@ -86,27 +77,18 @@ TEXTS = {
         "daw_on": "DAW mode",
         "daw_off": "Leave DAW mode",
         "daw_on_confirm": (
-            "DAW mode gets the Swing ready for a DAW over USB:\n\n"
-            "• Play, Stop and Rec on channel 16 (kept apart from the notes)\n"
+            "DAW mode leaves the Swing as a clean MIDI controller, with only the essentials:\n\n"
+            "• Keys, OCT−/OCT+, Hold, pitch bend and modulation, all on channel 1\n"
+            "• Transport off: Play, Stop and Rec send nothing (the Arp + REC/STOP/PLAY combos leak nothing)\n"
+            "• Transposition off: nothing transposes the sequencer\n"
             "• Mod strip on the standard CC 1\n"
             "• MIDI Thru off\n"
-            "• Transposition from USB only\n"
-            "• Linear velocity\n"
-            "• Transport as MIDI CC only (no MMC: a button never acts twice)\n"
-            "• Hold keeps the keys (each note ends with its own note off)\n\n"
+            "• Linear velocity\n\n"
             "The current values are saved so you can go back to them. Turn it on?"),
         "daw_off_confirm": "Go back to the settings the Swing had before DAW mode?",
-        "daw_on_done": "DAW mode on. In your DAW, turn Sync on for the Swing's MIDI output so it follows the tempo.",
+        "daw_on_done": "DAW mode on. In your DAW, use Sync only on the Swing's MIDI output (not its input) so it follows the tempo without loops.",
         "daw_off_done": "Settings from before DAW mode restored.",
         "daw_no_backup": "The Swing already has the DAW mode settings and there are no earlier settings saved to go back to.",
-        "bridge": "DAW bridge",
-        "bridge_off_hint": "Off. Needs loopMIDI with the ports “Swing to DAW” and “DAW to Swing”.",
-        "bridge_on_hint": "On: Swing ⇄ loopMIDI ⇄ DAW, with filters against loops and stuck notes.",
-        "bridge_on_done": "DAW bridge on. In the DAW: input “Swing to DAW” (Track) and output “DAW to Swing” (Sync). Turn off the “Behringer Swing” port.",
-        "bridge_off_done": "DAW bridge off.",
-        "bridge_missing": "Could not open the bridge: {err}. Open loopMIDI and create the ports “Swing to DAW” and “DAW to Swing”.",
-        "panic": "Panic",
-        "panic_done": "Panic sent to the DAW: notes, sustain and All Notes Off on all 16 channels.",
         "firmware": "Firmware {v}",
         "no_swing": "Connect your Behringer Swing by USB.\nIts settings will show up here automatically.",
         "reading": "Reading the Swing's settings…",

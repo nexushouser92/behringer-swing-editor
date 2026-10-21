@@ -231,50 +231,6 @@ class GuiTests(unittest.TestCase):
         app = self.make_app()
         self.assertEqual(app.action_buttons["daw_on"].cget("state"), "disabled")
 
-    # --- DAW bridge
-    def bridge_app(self, available=("Swing to DAW", "DAW to Swing")):
-        from test_bridge_io import FakeOpener
-        self.virtual = FakeOpener(available)
-        from swing_editor import bridge_io
-        return self.make_app(bridge_factory=lambda settings: bridge_io.BridgeRunner(opener=self.virtual, settings=settings))
-
-    def test_bridge_on_and_off(self):
-        from test_bridge_io import wait_until
-        app = self.bridge_app()
-        self.assertFalse(hasattr(app, "panic_button"))
-        app.bridge_switch.select()
-        app.toggle_bridge()
-        self.assertIsNotNone(app.bridge)
-        self.assertIs(self.link.bridge, app.bridge)
-        self.assertIn("Activo", app.bridge_label.cget("text"))
-        self.assertIn("Swing to DAW", app.message.cget("text"))
-        to_daw = self.virtual.ports["Swing to DAW"]
-        self.swing.on_short(0x90, 60, 100)
-        self.assertTrue(wait_until(lambda: (0x90, 60, 100) in to_daw.short))
-        app.bridge_switch.deselect()
-        app.toggle_bridge()
-        self.assertIsNone(app.bridge)
-        self.assertIsNone(self.link.bridge)
-        self.assertTrue(to_daw.closed)
-        self.assertTrue(wait_until(lambda: (0x80, 60, 0) in to_daw.short))
-
-    def test_bridge_without_loopmidi(self):
-        app = self.bridge_app(available=())
-        app.bridge_switch.select()
-        app.toggle_bridge()
-        self.assertIsNone(app.bridge)
-        self.assertEqual(app.bridge_switch.get(), 0)
-        self.assertIn("loopMIDI", app.message.cget("text"))
-
-    def test_bridge_follows_the_transport_settings(self):
-        app = self.bridge_app()
-        app.bridge_switch.select()
-        app.toggle_bridge()
-        app.set_value("rec_cc", 20)
-        self.sync(app)
-        self.assertEqual(app.bridge.bridge.settings["rec_cc"], 20)
-        app._stop_bridge()
-
     # --- files
     def test_save_and_open(self):
         app = self.make_app(ask_save=lambda **kw: os.path.join(self.dir, "mine.json"),

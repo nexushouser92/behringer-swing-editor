@@ -32,11 +32,10 @@ each change right away, with read-back verification.
   | Transport | Mode, Play/Pause, Play/Rec/Stop channels and CCs |
   | Lights | LED brightness |
 
-* **DAW bridge**: keeps the Swing's own port and gives your DAW two loopMIDI ports instead, so both can
-  be open at once. It filters the clock echo and status SysEx the Swing sends, and stops the hidden
-  transport message that leaks out when you change the clock source with Arp + Rec/Stop/Play while
-  recording. See [research/MESSAGE_FLOW.md](research/MESSAGE_FLOW.md) for the full list of crossings it
-  fixes.
+* **DAW mode**: one click turns the Swing into a plain MIDI controller — keys, OCT−/OCT+, Hold, pitch
+  bend and modulation on channel 1, and nothing else. Transport is off (so the Arp + Rec/Stop/Play
+  clock-source combos leak nothing), transposition is off, the mod strip uses the standard CC 1, and
+  MIDI Thru is off. It saves the settings it replaces, so one more click puts them all back.
 * **Presets**: save and open your settings as `.json`, and restore what was on the Swing when it was
   connected.
 * **Plain-language help text** under each setting.
@@ -51,8 +50,7 @@ each change right away, with read-back verification.
 
 1. Download `Swing.Editor.exe` from the [Releases](../../releases) page.
 2. Close your DAW and Control Tribe: while the editor is open, the Swing stays linked to it, and
-   Windows does not let another program use it at the same time. Turn on the **DAW bridge** in the app
-   if you want the editor and your DAW open together.
+   Windows does not let another program use it at the same time.
 3. Run the `.exe`. The status button turns to **Swing linked** and its current settings are loaded.
 4. Change any setting. The Swing updates by itself, and the field shows the stored value once it is
    confirmed.
@@ -88,8 +86,8 @@ Get-FileHash "Swing.Editor.exe" -Algorithm SHA256
 
 * [research/PROTOCOL.md](research/PROTOCOL.md): the Swing's SysEx protocol — the 47 known settings,
   their ids and ranges, the read/write pattern, and the commands the editor never sends.
-* [research/MESSAGE_FLOW.md](research/MESSAGE_FLOW.md): what the Swing sends and receives over USB, the
-  crossings that can cause stuck notes or transport loops in a DAW, and what the bridge fixes.
+* [research/MESSAGE_FLOW.md](research/MESSAGE_FLOW.md): what the Swing sends and receives over USB, and
+  the crossings that can cause stuck notes or transport loops in a DAW.
 * [research/PANEL_CONTROLS.md](research/PANEL_CONTROLS.md): the front panel controls and button
   combinations, mapped to what is (and isn't) visible over USB.
 * [research/KEYBOARD_AND_DAW.md](research/KEYBOARD_AND_DAW.md): keyboard and DAW interaction notes from

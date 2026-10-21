@@ -9,7 +9,7 @@ from tkinter import filedialog, messagebox
 
 import customtkinter as ctk
 
-from . import __version__, bridge_io, daw_mode, presets, protocol
+from . import __version__, daw_mode, presets, protocol
 from .device import VerifyError
 from .midi_win import MidiError
 from .i18n import Translator
@@ -135,11 +135,8 @@ class Control:
 class App(ctk.CTkFrame):
     def __init__(self, master, lang=None, link=None, autostart=True,
                  ask_yes_no=messagebox.askyesno, ask_open=filedialog.askopenfilename,
-                 ask_save=filedialog.asksaveasfilename, clock=time.monotonic, backup_path=None,
-                 bridge_factory=bridge_io.BridgeRunner):
+                 ask_save=filedialog.asksaveasfilename, clock=time.monotonic, backup_path=None):
         super().__init__(master, fg_color=BG, corner_radius=0)
-        self.bridge_factory = bridge_factory
-        self.bridge = None            # bridge_io.BridgeRunner while the DAW bridge is on
         self.backup_path = backup_path or daw_mode.default_backup_path()
         self.t = Translator(lang)
         self.link = link or SwingLink()
@@ -223,14 +220,6 @@ class App(ctk.CTkFrame):
             self.nav_buttons[section] = button
         self.firmware_label = ctk.CTkLabel(nav, text="", font=(FONT, 11), text_color=MUTED)
         self.firmware_label.pack(side="bottom", pady=(6, 14))
-        daw_box = ctk.CTkFrame(nav, fg_color=CARD_HI, corner_radius=12)
-        daw_box.pack(side="bottom", fill="x", padx=12, pady=(10, 0))
-        self.bridge_switch = ctk.CTkSwitch(daw_box, text=t("bridge"), font=(FONT, 13), text_color=TEXT,
-                                           progress_color=ACCENT, command=self.toggle_bridge)
-        self.bridge_switch.pack(anchor="w", padx=12, pady=(10, 2))
-        self.bridge_label = ctk.CTkLabel(daw_box, text=t("bridge_off_hint"), font=(FONT, 10), text_color=MUTED,
-                                         justify="left", wraplength=170, anchor="w")
-        self.bridge_label.pack(fill="x", padx=12)
         self.content = self._card(body, width=CONTENT_W, height=CONTENT_H)
         self.content.pack(side="left", fill="both", expand=True, padx=(14, 0))
         self.content.pack_propagate(False)
@@ -303,10 +292,6 @@ class App(ctk.CTkFrame):
         self._show("save_state", state, lambda s: self.action_buttons["save"].configure(state=s))
         undo = "normal" if self.original is not None and self.link.linked else "disabled"
         self._show("undo_state", undo, lambda s: self.action_buttons["undo_all"].configure(state=s))
-        bridge_on = self.bridge is not None
-        self._show("bridge", (bridge_on, self.link.linked), lambda b:
-            self.bridge_label.configure(text=self.t("bridge_on_hint" if b[0] else "bridge_off_hint"),
-                                        text_color=(OK if b[1] else MUTED) if b[0] else MUTED))
         active = self.settings is not None and daw_mode.is_active(self.settings)
         daw = ("disabled" if self.settings is None else "normal", active)
         self._show("daw", daw, lambda d: self.action_buttons["daw_on"].configure(
@@ -341,8 +326,6 @@ class App(ctk.CTkFrame):
                 self.firmware_label.configure(text=self.t("firmware", v=".".join(map(str, payload[1]))))
             elif kind == "settings":
                 self._reading = False
-                if self.bridge is not None:
-                    self.bridge.bridge.settings = payload   # it follows the transport channel and CCs
                 if getattr(self, "_new_link", False):
                     self._new_link = False
                     self.original = payload
@@ -356,8 +339,6 @@ class App(ctk.CTkFrame):
                 self._writing = True
             elif kind == "written":
                 self._writing, self._failed = False, False
-                if self.bridge is not None:
-                    self.bridge.bridge.settings = payload
                 self._written_at = self.clock()
             elif kind == "write_failed":
                 self._writing, self._failed = False, True
@@ -462,31 +443,6 @@ class App(ctk.CTkFrame):
         self.link.push(self.settings)
         self.refresh()
 
-    # ------------------------------------------------------------------ DAW bridge
-    def toggle_bridge(self):
-        if self.bridge_switch.get():
-            runner = self.bridge_factory(settings=self.link.on_swing or self.settings)
-            try:
-                runner.open()
-            except (MidiError, OSError) as e:
-                self.bridge_switch.deselect()
-                self.show(self.t("bridge_missing", err=e), ERROR)
-                return
-            self.bridge = runner
-            self.link.set_bridge(runner)
-            self.show(self.t("bridge_on_done"), OK)
-        else:
-            self._stop_bridge()
-            self.show(self.t("bridge_off_done"))
-        self.refresh()
-
-    def _stop_bridge(self):
-        runner, self.bridge = self.bridge, None
-        if runner is not None:
-            self.link.set_bridge(None)
-            runner.panic()
-            runner.close()
-
     def undo_all(self):
         if self.original is None or self.settings is None:
             return
@@ -498,7 +454,6 @@ class App(ctk.CTkFrame):
         self.refresh()
 
     def on_close(self):
-        self._stop_bridge()
         self.link.stop()   # applies any change still waiting before closing the port
         self.master.destroy()
 

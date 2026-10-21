@@ -1,4 +1,13 @@
-"""DAW mode: a set of ordinary settings that make the Swing easier to use with a DAW over USB.
+"""DAW mode: turns the Swing into a plain MIDI controller — one clean layer with nothing in the way.
+
+It leaves only what a controller needs: the keys, OCT-/OCT+, Hold, pitch bend and modulation, all on
+channel 1, over USB and the DIN MIDI out. Everything else the Swing can leak over USB is silenced:
+Play/Stop/Rec send nothing (so the Arp + REC/STOP/PLAY clock-source combos leak nothing either),
+nothing transposes the sequencer, and the mod strip uses the standard CC 1.
+
+The arpeggiator, the sequencer and the Arp + clock-source combos are front-panel features with no
+SysEx switch to disable them (see research/MESSAGE_FLOW.md, "Not possible from outside the Swing");
+turning transport off is what makes them harmless to a DAW. The clock echo is a DAW-side sync setting.
 
 Turning it on saves the values it replaces in a small JSON file, so they can be put back later even
 after the editor was closed. Only confirmed settings are involved; nothing else is changed.
@@ -10,18 +19,19 @@ from . import protocol
 from .protocol import ProtocolError
 
 DAW_SETTINGS = {
-    "play_channel": 15,      # transport on channel 16, away from the notes on channel 1
-    "stop_channel": 15,
-    "rec_channel": 15,
-    "mod_cc": 1,             # the standard mod wheel CC
-    "midi_thru": 0,          # off: nothing is echoed out of the MIDI jack
-    "transpose_port": 0,     # transposition from USB only
-    "velocity_curve": 0,     # linear
-    "transport_mode": 1,     # MIDI CC only: with MMC as well, some DAWs act twice on one press
-    "hold_function": 1,      # Hold keys: the Swing sends each note's own note off when Hold is released
+    "transport_mode": 0,      # Off: Play/Stop/Rec send nothing, so Arp + REC/STOP/PLAY leak nothing to the DAW
+    "transpose_channel": 126, # None: nothing transposes the sequencer (no stray octave jumps from the DAW)
+    "mod_cc": 1,              # the standard mod wheel CC, not the reserved CC 127
+    "midi_thru": 0,           # off: nothing is echoed out of the MIDI jack
+    "velocity_curve": 0,      # linear: the full velocity range
+    "velocity_mode": 0,       # As played: not stuck on a fixed velocity
+    "hold_function": 1,       # Hold keys: the Swing sends each note's own note off when Hold is released
+    "output_channel": 0,      # channel 1: a single, predictable note channel
+    "mod_channel": 0,         # mod strip on channel 1 too
+    "pitch_bend_channel": 0,  # pitch bend on channel 1 too
 }
-# Hold mode is left alone on purpose: in Toggle it latches the arpeggiator, which DAW users need.
-# See research/MESSAGE_FLOW.md for the reasons behind each value.
+# Hold mode (Gate/Toggle) is left alone on purpose: it only changes how Hold latches, not what leaks,
+# and Toggle is what lets Hold keep a chord. See research/MESSAGE_FLOW.md for the reasons behind each value.
 
 for _key, _value in DAW_SETTINGS.items():
     protocol.param(_key).validate(_value)
