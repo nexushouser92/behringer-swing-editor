@@ -152,6 +152,7 @@ class App(ctk.CTkFrame):
         self._busy = False            # the Swing is there but another program has its port
         self._writing = False
         self._failed = False
+        self._new_link = False        # the current link is a fresh one (records the original settings)
         self._written_at = -100.0
 
         self.master.title(self.t("title"))
@@ -328,7 +329,7 @@ class App(ctk.CTkFrame):
                 self.firmware_label.configure(text=self.t("firmware", v=".".join(map(str, payload[1]))))
             elif kind == "settings":
                 self._reading = False
-                if getattr(self, "_new_link", False):
+                if self._new_link:
                     self._new_link = False
                     self.original = payload
                 if self.settings is None or not self.link.has_pending:
