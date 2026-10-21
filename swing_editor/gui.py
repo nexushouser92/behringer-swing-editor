@@ -4,6 +4,8 @@ The Swing stays linked while the window is open (link.py): it is found automatic
 are read, and every change is applied to it a moment after the last edit and verified.
 Only the settings confirmed on a real Swing are shown (protocol.EDITABLE).
 """
+import os
+import sys
 import time
 from tkinter import filedialog, messagebox
 
@@ -458,11 +460,21 @@ class App(ctk.CTkFrame):
         self.master.destroy()
 
 
+def _icon_path():
+    """assets/icon.ico, both when run from source and when bundled by PyInstaller."""
+    base = getattr(sys, "_MEIPASS", os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    return os.path.join(base, "assets", "icon.ico")
+
+
 def main(lang=None):
     ctk.set_appearance_mode("dark")
     ctk.set_default_color_theme("blue")
     root = ctk.CTk(fg_color=BG)
     root.resizable(False, False)
+    try:
+        root.iconbitmap(_icon_path())
+    except Exception:
+        pass   # no icon file (e.g. a source checkout without assets) or a non-Windows Tk
     App(root, lang=lang)
     root.mainloop()
 
