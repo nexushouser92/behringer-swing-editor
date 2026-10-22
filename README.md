@@ -1,4 +1,4 @@
-# Swing Editor (unofficial) · Behringer Swing settings editor
+# Behringer Swing Unofficial editor
 
 A Windows editor for the global settings of the **Behringer Swing**, written from scratch from the
 device's own SysEx protocol. It reads every setting as soon as the Swing is plugged in and applies
@@ -101,14 +101,6 @@ Get-FileHash "Swing.Editor.exe" -Algorithm SHA256
   (clears a sequence) or any firmware data.
 * Every value is validated against its setting's range before being sent.
 * A write only counts as done once reading it back returns the same value.
-
-## Development
-
-```powershell
-pip install -r requirements.txt
-python -m unittest discover -s tests
-python main.py
-```
 
 ## License
 
