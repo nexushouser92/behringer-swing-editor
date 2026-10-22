@@ -1,9 +1,10 @@
-"""Main window (CustomTkinter), with the same look as Orbit Editor.
+"""Main window (CustomTkinter), with the same macOS-style look as the nanoKONTROL 2 editor.
 
 The Swing stays linked while the window is open (link.py): it is found automatically, its settings
 are read, and every change is applied to it a moment after the last edit and verified.
 Only the settings confirmed on a real Swing are shown (protocol.EDITABLE).
 """
+import ctypes
 import os
 import sys
 import time
@@ -18,18 +19,29 @@ from .i18n import Translator
 from .link import SwingLink
 from .protocol import ProtocolError, SwingSettings
 
-BG = "#121418"
-CARD = "#1b1e24"
-CARD_HI = "#262b34"
-EDGE = "#333944"
-TEXT = "#e9ecf1"
-MUTED = "#8a93a3"
-ACCENT = "#3d8bfd"
-ACCENT_HOVER = "#2f6fd0"
-OK = "#2fbf71"
-OK_DARK = "#1d6e45"
-ERROR = "#ff6159"
-FONT = "Segoe UI"
+# macOS (light) system colours: window #ececec, white content, a light toolbar and sidebar,
+# white push buttons with a hairline border, system blue for accents and selections.
+BG = "#ececec"            # window background
+TOOLBAR = "#f6f6f6"       # header
+SIDEBAR = "#e7e7e9"
+SIDEBAR_HOVER = "#dcdcdf"
+CARD = "#ffffff"          # content
+BUTTON = "#ffffff"        # push button, with a BUTTON_EDGE border
+BUTTON_HOVER = "#f6f6f6"
+BUTTON_EDGE = "#cfcfcf"
+TRACK = "#e3e3e3"         # segmented control and slider track
+EDGE = "#d9d9d9"          # separators
+TEXT = "#262626"          # labels: black 85 %
+MUTED = "#808080"         # secondary labels: black 50 %
+DIM = "#a6a6a6"
+ACCENT = "#007aff"        # system blue
+ACCENT_HOVER = "#1a88ff"
+SELECTED = "#0063e1"      # selected sidebar item
+OK = "#1f9d3a"
+WARN = "#c26a00"
+ERROR = "#d70015"
+FONT_CHOICES = ("Inter", "Segoe UI")
+FONT = "Segoe UI"         # replaced by Inter in main() when assets/fonts loads
 
 CONTENT_W, CONTENT_H = 660, 590
 WRITTEN_SECONDS = 2.0
@@ -42,10 +54,11 @@ class Spin(ctk.CTkFrame):
         super().__init__(master, fg_color="transparent")
         self.low, self.high, self.on_change = low, high, on_change
         self.value = None
-        style = dict(width=28, height=30, fg_color=CARD_HI, hover_color=EDGE, corner_radius=8)
+        style = dict(width=28, height=30, fg_color=BUTTON, hover_color=BUTTON_HOVER, border_width=1,
+                     border_color=BUTTON_EDGE, text_color=TEXT, corner_radius=7)
         self.minus = ctk.CTkButton(self, text="−", command=lambda: self.step(-1), **style)
         self.entry = ctk.CTkEntry(self, width=width, height=30, justify="center", border_width=1,
-                                  border_color=EDGE, fg_color=BG, corner_radius=8)
+                                  border_color=BUTTON_EDGE, fg_color=CARD, text_color=TEXT, corner_radius=7)
         self.plus = ctk.CTkButton(self, text="+", command=lambda: self.step(1), **style)
         self.minus.pack(side="left")
         self.entry.pack(side="left", padx=4)
@@ -99,7 +112,7 @@ class Control:
                 self.widget = ctk.CTkFrame(parent, fg_color="transparent")
                 self.slider = ctk.CTkSlider(self.widget, from_=0, to=127, number_of_steps=127, width=200,
                                             button_color=ACCENT, button_hover_color=ACCENT_HOVER,
-                                            progress_color=ACCENT, fg_color=CARD_HI,
+                                            progress_color=ACCENT, fg_color=TRACK,
                                             command=lambda v: app.set_value(param.key, int(round(v))))
                 self.slider.pack(side="left")
                 self.value_label = ctk.CTkLabel(self.widget, text="", width=40, font=(FONT, 13, "bold"),
@@ -166,18 +179,27 @@ class App(ctk.CTkFrame):
 
     # ------------------------------------------------------------------ layout helpers
     def _card(self, parent, **kw):
-        return ctk.CTkFrame(parent, fg_color=CARD, corner_radius=16, border_width=1, border_color="#232730", **kw)
+        return ctk.CTkFrame(parent, fg_color=CARD, corner_radius=10, border_width=1, border_color=EDGE, **kw)
 
     def _segmented(self, parent, values, command, **kw):
-        return ctk.CTkSegmentedButton(parent, values=values, command=command, selected_color=ACCENT,
-                                      selected_hover_color=ACCENT_HOVER, unselected_color=CARD_HI,
-                                      unselected_hover_color=EDGE, fg_color=CARD_HI, corner_radius=8,
-                                      font=(FONT, 12), height=30, **kw)
+        # macOS segmented control: the chosen segment is white on a grey track
+        return ctk.CTkSegmentedButton(parent, values=values, command=command, selected_color=BUTTON,
+                                      selected_hover_color=BUTTON, unselected_color=TRACK,
+                                      unselected_hover_color=EDGE, fg_color=TRACK, text_color=TEXT,
+                                      corner_radius=7, font=(FONT, 12), height=30, **kw)
 
     def _option(self, parent, values, command, width=110):
-        return ctk.CTkOptionMenu(parent, values=values, command=command, width=width, height=30,
-                                 fg_color=CARD_HI, button_color=CARD_HI, button_hover_color=EDGE,
-                                 corner_radius=8, dynamic_resizing=False, font=(FONT, 12))
+        # macOS pop-up button: white with a hairline border and the blue arrow box on the right.
+        # CTkOptionMenu has no border, so it sits in a bordered frame, which is what gets packed (.outer).
+        outer = ctk.CTkFrame(parent, fg_color=BUTTON, border_width=1, border_color=BUTTON_EDGE, corner_radius=8)
+        menu = ctk.CTkOptionMenu(outer, values=values, command=command, width=width, height=28,
+                                 fg_color=BUTTON, button_color=ACCENT, button_hover_color=ACCENT_HOVER,
+                                 text_color=TEXT, dropdown_fg_color=CARD, dropdown_hover_color=SELECTED,
+                                 dropdown_text_color=TEXT, corner_radius=7, dynamic_resizing=False,
+                                 font=(FONT, 12), dropdown_font=(FONT, 12))
+        menu.pack(padx=1, pady=1)
+        menu.outer = outer
+        return menu
 
     def _show(self, key, value, apply):
         """Call apply(value) only if value changed since last time (prevents flicker)."""
@@ -188,8 +210,11 @@ class App(ctk.CTkFrame):
     # ------------------------------------------------------------------ build
     def _build(self):
         t = self.t
-        header = ctk.CTkFrame(self, fg_color="transparent")
-        header.pack(fill="x", padx=22, pady=(16, 12))
+        toolbar = ctk.CTkFrame(self, fg_color=TOOLBAR, corner_radius=0)
+        toolbar.pack(fill="x")
+        ctk.CTkFrame(self, fg_color=EDGE, height=1, corner_radius=0).pack(fill="x")
+        header = ctk.CTkFrame(toolbar, fg_color="transparent")
+        header.pack(fill="x", padx=22, pady=(14, 12))
         titles = ctk.CTkFrame(header, fg_color="transparent")
         titles.pack(side="left", padx=(0, 28))
         ctk.CTkLabel(titles, text=t("heading"), font=(FONT, 22, "bold"), text_color=TEXT).pack(anchor="w")
@@ -197,7 +222,8 @@ class App(ctk.CTkFrame):
 
         actions = ctk.CTkFrame(header, fg_color="transparent")
         actions.pack(side="right")
-        plain = dict(height=36, fg_color=CARD_HI, hover_color=EDGE, corner_radius=10, font=(FONT, 13))
+        plain = dict(height=34, fg_color=BUTTON, hover_color=BUTTON_HOVER, border_width=1, border_color=BUTTON_EDGE,
+                     text_color=TEXT, text_color_disabled=DIM, corner_radius=7, font=(FONT, 13))
         self.action_buttons = {}
         for key, command, width in (("open", self.open_file, 80), ("save", self.save_file, 86),
                                     ("undo_all", self.undo_all, 132), ("daw_on", self.toggle_daw_mode, 140)):
@@ -205,19 +231,20 @@ class App(ctk.CTkFrame):
             button.pack(side="left", padx=(0, 6))
             self.action_buttons[key] = button
         ctk.CTkFrame(actions, fg_color="transparent", width=6, height=1).pack(side="left")
-        self.status_button = ctk.CTkButton(actions, text="", width=290, height=36, corner_radius=18,
+        self.status_button = ctk.CTkButton(actions, text="", width=290, height=34, corner_radius=7,
+                                           fg_color=BUTTON, border_width=1, border_color=BUTTON_EDGE,
                                            font=(FONT, 13, "bold"), command=self.on_status_click)
         self.status_button.pack(side="left")
 
         body = ctk.CTkFrame(self, fg_color="transparent")
-        body.pack(fill="both", expand=True, padx=22)
+        body.pack(fill="both", expand=True, padx=22, pady=(16, 0))
 
-        nav = self._card(body)
+        nav = ctk.CTkFrame(body, fg_color=SIDEBAR, corner_radius=10)
         nav.pack(side="left", fill="y")
         self.nav_buttons = {}
         for section in protocol.SECTIONS:
-            button = ctk.CTkButton(nav, text=t(section), width=180, height=36, anchor="w", corner_radius=10,
-                                   font=(FONT, 13), fg_color="transparent", hover_color=CARD_HI,
+            button = ctk.CTkButton(nav, text=t(section), width=180, height=34, anchor="w", corner_radius=7,
+                                   font=(FONT, 13), fg_color="transparent", hover_color=SIDEBAR_HOVER,
                                    text_color=TEXT, command=lambda s=section: self.show_section(s))
             button.pack(padx=12, pady=(12 if section == protocol.SECTIONS[0] else 2, 0))
             self.nav_buttons[section] = button
@@ -237,7 +264,7 @@ class App(ctk.CTkFrame):
         self.message = ctk.CTkLabel(footer, text="", font=(FONT, 12), text_color=MUTED, anchor="w")
         self.message.pack(side="left", fill="x", expand=True)
         ctk.CTkLabel(footer, text=f"{t('disclaimer')}   v{__version__}", font=(FONT, 11),
-                     text_color="#5d6573").pack(side="right")
+                     text_color=DIM).pack(side="right")
 
     def _build_page(self, section):
         page = ctk.CTkFrame(self.content, fg_color="transparent")
@@ -257,7 +284,7 @@ class App(ctk.CTkFrame):
                 ctk.CTkLabel(texts, text=help_text, font=(FONT, 11), text_color=MUTED, anchor="w",
                              justify="left", wraplength=340, height=16).pack(fill="x")
             control = Control(self, row, param)
-            control.widget.pack(side="right")
+            getattr(control.widget, "outer", control.widget).pack(side="right")
             self.controls[param.key] = control
         return page
 
@@ -285,7 +312,8 @@ class App(ctk.CTkFrame):
         for section, button in self.nav_buttons.items():
             selected = section == self.section
             self._show(("nav", section), selected, lambda s, b=button: b.configure(
-                fg_color=ACCENT if s else "transparent", hover_color=ACCENT_HOVER if s else CARD_HI))
+                fg_color=SELECTED if s else "transparent", hover_color=SELECTED if s else SIDEBAR_HOVER,
+                text_color="#ffffff" if s else TEXT))
         page = self.pages[self.section] if self.settings is not None else self.placeholder
         self._show("page", page, self._place_page)
         if self.settings is not None:
@@ -299,7 +327,8 @@ class App(ctk.CTkFrame):
         daw = ("disabled" if self.settings is None else "normal", active)
         self._show("daw", daw, lambda d: self.action_buttons["daw_on"].configure(
             state=d[0], text=self.t("daw_off" if d[1] else "daw_on"),
-            fg_color=ACCENT if d[1] else CARD_HI, hover_color=ACCENT_HOVER if d[1] else EDGE))
+            fg_color=ACCENT if d[1] else BUTTON, hover_color=ACCENT_HOVER if d[1] else BUTTON_HOVER,
+            text_color="#ffffff" if d[1] else TEXT, border_width=0 if d[1] else 1))
         self._draw_status()
 
     def _place_page(self, page):
@@ -360,17 +389,17 @@ class App(ctk.CTkFrame):
     def _status(self):
         if not self.link.linked:
             if self._busy:
-                return "status_busy", "#5c2422", "#ffd6d3"
-            return "status_searching", CARD_HI, MUTED
+                return "status_busy", BUTTON, ERROR
+            return "status_searching", BUTTON, MUTED
         if self._reading:
-            return "status_reading", OK_DARK, "#ffffff"
+            return "status_reading", BUTTON, WARN
         if self._failed:
-            return "status_failed", "#5c2422", "#ffd6d3"
+            return "status_failed", BUTTON, ERROR
         if self._writing or self.link.has_pending:
-            return "status_writing", ACCENT, "#ffffff"
+            return "status_writing", BUTTON, WARN
         if self.clock() - self._written_at < WRITTEN_SECONDS:
-            return "status_written", OK, "#ffffff"
-        return "status_linked", OK_DARK, "#ffffff"
+            return "status_written", BUTTON, OK
+        return "status_linked", BUTTON, OK
 
     def _draw_status(self):
         key, bg, fg = self._status()
@@ -461,16 +490,38 @@ class App(ctk.CTkFrame):
         self.master.destroy()
 
 
-def _icon_path():
-    """assets/icon.ico, both when run from source and when bundled by PyInstaller."""
+def _asset(*parts):
+    """A file in assets/, both when run from source and when bundled by PyInstaller."""
     base = getattr(sys, "_MEIPASS", os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-    return os.path.join(base, "assets", "icon.ico")
+    return os.path.join(base, "assets", *parts)
+
+
+def _icon_path():
+    return _asset("icon.ico")
+
+
+def _load_fonts():
+    """Make the fonts in assets/fonts (Inter, SIL OFL) usable by this process only, without installing
+    them in Windows, and use the first available family of FONT_CHOICES."""
+    global FONT
+    folder = _asset("fonts")
+    if sys.platform == "win32" and os.path.isdir(folder):
+        for name in sorted(os.listdir(folder)):
+            if name.lower().endswith(".ttf"):
+                try:
+                    ctypes.windll.gdi32.AddFontResourceExW(os.path.join(folder, name), 0x10, 0)   # FR_PRIVATE
+                except (AttributeError, OSError):
+                    pass
+    import tkinter.font
+    families = set(tkinter.font.families())
+    FONT = next((f for f in FONT_CHOICES if f in families), FONT)
 
 
 def main(lang=None):
-    ctk.set_appearance_mode("dark")
+    ctk.set_appearance_mode("light")
     ctk.set_default_color_theme("blue")
     root = ctk.CTk(fg_color=BG)
+    _load_fonts()
     root.resizable(False, False)
     try:
         root.iconbitmap(_icon_path())

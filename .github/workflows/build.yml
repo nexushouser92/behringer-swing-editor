@@ -30,7 +30,7 @@ jobs:
         run: python -m unittest discover -s tests -v
 
       - name: Build the .exe
-        run: python -m PyInstaller --onefile --windowed --name "$env:EXE_NAME" --icon "assets\icon.ico" --add-data "assets\icon.ico;assets" --collect-data customtkinter main.py
+        run: python -m PyInstaller --onefile --windowed --name "$env:EXE_NAME" --icon "assets\icon.ico" --add-data "assets\icon.ico;assets" --add-data "assets\fonts;assets\fonts" --collect-data customtkinter main.py
 
       - name: Compute SHA-256
         shell: pwsh
