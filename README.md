@@ -1,4 +1,4 @@
-# Swing Editor (unofficial) · Behringer Swing settings editor
+# Behringer Swing Unofficial editor
 
 A Windows editor for the global settings of the **Behringer Swing**, written from scratch from the
 device's own SysEx protocol. It reads every setting as soon as the Swing is plugged in and applies
