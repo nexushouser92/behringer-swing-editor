@@ -102,14 +102,6 @@ Get-FileHash "Swing.Editor.exe" -Algorithm SHA256
 * Every value is validated against its setting's range before being sent.
 * A write only counts as done once reading it back returns the same value.
 
-## Development
-
-```powershell
-pip install -r requirements.txt
-python -m unittest discover -s tests
-python main.py
-```
-
 ## License
 
 MIT — see [LICENSE](LICENSE).
