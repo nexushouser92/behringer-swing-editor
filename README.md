@@ -10,6 +10,10 @@ each change right away, with read-back verification.
 
 ![Swing Editor window](docs/screenshot.png)
 
+| Sequencer | CV / Gate | Clock & tempo |
+|---|---|---|
+| ![Sequencer section](docs/screenshot-sequencer.png) | ![CV / Gate section](docs/screenshot-cv-gate.png) | ![Clock & tempo section](docs/screenshot-clock.png) |
+
 ---
 
 ## Features
