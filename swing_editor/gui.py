@@ -11,6 +11,7 @@ import time
 from tkinter import filedialog, messagebox
 
 import customtkinter as ctk
+from PIL import Image
 
 from . import __version__, daw_mode, presets, protocol
 from .device import VerifyError
@@ -215,6 +216,9 @@ class App(ctk.CTkFrame):
         ctk.CTkFrame(self, fg_color=EDGE, height=1, corner_radius=0).pack(fill="x")
         header = ctk.CTkFrame(toolbar, fg_color="transparent")
         header.pack(fill="x", padx=22, pady=(14, 12))
+        logo = _logo(46)
+        if logo is not None:
+            ctk.CTkLabel(header, text="", image=logo, width=46).pack(side="left", padx=(0, 12))
         titles = ctk.CTkFrame(header, fg_color="transparent")
         titles.pack(side="left", padx=(0, 28))
         ctk.CTkLabel(titles, text=t("heading"), font=(FONT, 22, "bold"), text_color=TEXT).pack(anchor="w")
@@ -500,6 +504,15 @@ def _icon_path():
     return _asset("icon.ico")
 
 
+def _logo(size):
+    """The app logo as a CTkImage, or None if the file is missing (e.g. a partial checkout)."""
+    try:
+        image = Image.open(_asset("logo.png"))
+    except OSError:
+        return None
+    return ctk.CTkImage(light_image=image, dark_image=image, size=(size, size))
+
+
 def _load_fonts():
     """Make the fonts in assets/fonts (Inter, SIL OFL) usable by this process only, without installing
     them in Windows, and use the first available family of FONT_CHOICES."""
@@ -525,6 +538,8 @@ def main(lang=None):
     root.resizable(False, False)
     try:
         root.iconbitmap(_icon_path())
+        # CustomTkinter sets its own icon a moment after start; set ours after it.
+        root.after(250, lambda: root.iconbitmap(_icon_path()))
     except Exception:
         pass   # no icon file (e.g. a source checkout without assets) or a non-Windows Tk
     App(root, lang=lang)
